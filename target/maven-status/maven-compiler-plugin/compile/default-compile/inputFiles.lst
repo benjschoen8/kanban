@@ -1,0 +1,10 @@
+/home/benjschoen8/Documents/kanban/src/main/java/ntut/entity/AggregateRoot.java
+/home/benjschoen8/Documents/kanban/src/main/java/ntut/entity/Board.java
+/home/benjschoen8/Documents/kanban/src/main/java/ntut/entity/BoardMember.java
+/home/benjschoen8/Documents/kanban/src/main/java/ntut/entity/BoardMemberType.java
+/home/benjschoen8/Documents/kanban/src/main/java/ntut/port/InMemoryBoardRepository.java
+/home/benjschoen8/Documents/kanban/src/main/java/ntut/usecase/BoardRepository.java
+/home/benjschoen8/Documents/kanban/src/main/java/ntut/usecase/CqrsOutput.java
+/home/benjschoen8/Documents/kanban/src/main/java/ntut/usecase/CreateBoardInput.java
+/home/benjschoen8/Documents/kanban/src/main/java/ntut/usecase/CreateBoardUseCase.java
+/home/benjschoen8/Documents/kanban/src/main/java/ntut/usecase/ExitCode.java

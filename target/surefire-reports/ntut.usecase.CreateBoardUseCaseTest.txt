@@ -1,0 +1,12 @@
+-------------------------------------------------------------------------------
+Test set: ntut.usecase.CreateBoardUseCaseTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.083 s <<< FAILURE! -- in ntut.usecase.CreateBoardUseCaseTest
+ntut.usecase.CreateBoardUseCaseTest.should_succeed_when_create_board_in_team -- Time elapsed: 0.057 s <<< ERROR!
+java.util.NoSuchElementException: No value present
+	at java.base/java.util.Optional.orElseThrow(Optional.java:377)
+	at ntut.usecase.CreateBoardUseCaseTest.should_succeed_when_create_board_in_team(CreateBoardUseCaseTest.java:50)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+
