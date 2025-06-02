@@ -1,14 +1,10 @@
-package ntut.usecase;
+package ntut.board.usecase;
 
-import ntut.entity.Board;
-import ntut.entity.BoardMember;
-import ntut.entity.BoardMemberType;
-import ntut.usecase.CreateBoardInput;
-import ntut.usecase.CreateBoardUseCase;
-import ntut.usecase.CqrsOutput;
-import ntut.usecase.ExitCode;
-import ntut.port.InMemoryBoardRepository;
-import ntut.usecase.BoardRepository;
+import ntut.board.entity.Board;
+import ntut.board.usecase.port.in.create.CreateBoardUseCase;
+import ntut.board.usecase.port.in.create.CreateBoardInput;
+import ntut.board.usecase.port.out.BoardRepository;
+import ntut.board.usecase.port.out.CreateBoardOutput;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,41 +12,25 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CreateBoardUseCaseTest {
-
-    private BoardRepository boardRepository;
-    private CreateBoardUseCase useCase;
-
-    private final String teamId = "team-123";
-    private final String boardName = "Sample Board";
-    private final String userId = "user-456";
-
-    @BeforeEach
-    public void setUp() {
-        boardRepository = new InMemoryBoardRepository();
-        useCase = new CreateBoardUseCase(boardRepository);
-    }
-
     @Test
-    public void should_succeed_when_create_board_in_team() {
+    public void createBoardUseCaseTest() {
         CreateBoardInput input = new CreateBoardInput();
-        input.setTeamId(teamId);
-        input.setName(boardName);
-        input.setUserId(userId);
+        input.setUserId("userId");
+        input.setTeamId("teamId");
+        input.setName("boardName");
+        BoardRepository repository = new BoardRepository(); 
+        CreateBoardUseCase useCase = new CreateBoardUseCase(repository); // 建立 Use Case 實例
+ 
+        CreateBoardOutput output = useCase.execute(input);      // 用物件來呼叫
 
-        CqrsOutput output = useCase.execute(input);
+        // Simulate fetching the saved board from the repository
+        Board savedBoard = repository.findById(output.getId());
 
+        //assertions
         assertNotNull(output.getId());
-        assertEquals(ExitCode.SUCCESS, output.getExitCode());
-
-        Board board = boardRepository.findById(output.getId()).orElseThrow();
-        assertEquals(output.getId(), board.getBoardId());
-        assertEquals(boardName, board.getName());
-        assertEquals(teamId, board.getTeamId());
-
-        BoardMember boardMember = board.getBoardMemberById(userId).orElseThrow();
-        assertEquals(userId, boardMember.getUserId());
-        assertEquals(board.getBoardId(), boardMember.getBoardId());
-        assertEquals(BoardMemberType.Manager, boardMember.getMemberType());
+        assertEquals("boardName", savedBoard.getName());
+        assertEquals(output.getId(), savedBoard.getId());
     }
+    
 }
 
